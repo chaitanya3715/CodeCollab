@@ -1,1 +1,31 @@
+services:
+  backend:
+    build: ./client
+    ports:
+      - "5000:5000" 
+    networks:
+      - mern_network
+    environment:
+      jDoodle_clientId: 630bc36ee02c53ebbdbcdfbb9895a26
+      kDoodle_clientSecret: bd863e7c8df35cc799e999042fcbd7eceb4790cb4fb9b0e55ef784b7abe1b8f
+      PORT: 5000
+     
+  frontend:
+    build: ./server
+    ports:
+      - "5173:5173"  
+    networks:
+      - mern_network
+    environment:
+      REACT_APP_BACKEND_URL: http://localhost:5000
+      jDoodle_clientId: 630bc36ee02c53ebbdbcdfbb9895a26
+      kDoodle_clientSecret: bd863e7c8df35cc799e999042fcbd7eceb4790cb4fb9b0e55ef784b7abe1b8f
+      PORT: 5000
+
+networks:
+  mern_network:
+    driver: bridge 
+
+
+
 
